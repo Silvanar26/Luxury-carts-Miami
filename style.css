@@ -1,0 +1,182 @@
+/* === ESTILOS GENERALES === */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+/* === HEADER Y MENÚ === */
+header {
+  background: #333;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header nav {
+  display: flex;
+  gap: 20px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+header nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: red;
+  transition: width 0.3s ease;
+}
+
+header nav a:hover {
+  color: red;
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+/* === ABOUT SECTION === */
+.about {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-contenido {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.about-contenido img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-contenido .texto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* capa oscura */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.about-contenido .texto h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.about-contenido .texto p {
+  max-width: 700px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* === CATÁLOGO === */
+.catalogo {
+  padding: 2rem;
+  text-align: center;
+}
+
+.autos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.auto {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 220px;
+}
+
+.auto h3 {
+  margin-top: 0;
+}
+
+.comprar {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comprar:hover {
+  background: #218838;
+}
+
+/* === COLORES === */
+.colores {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+
+.color:hover {
+  border: 2px solid #000;
+}
+
+/* === FOOTER === */
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.redes {
+  margin-top: 10px;
+}
+
+.redes img {
+  width: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+}

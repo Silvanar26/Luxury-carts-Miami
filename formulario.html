@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUX — Become a Dealer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Supabase UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <style>
+    :root{ --primary-black:#0A0A0A; --primary-red:#D32F2F; }
+    body{ font-family:'Montserrat',sans-serif; color:#0A0A0A; background:#fff; }
+    .logo-text{ font-family:'Cormorant Garamond',serif; font-weight:700; letter-spacing:.1em; color:#C0C0C0; }
+    .nav-link:after{content:'';display:block;width:0;height:2px;background:var(--primary-red);transition:width .3s}
+    .nav-link:hover:after{width:100%}
+    .req::after{ content:' *'; color:#DC2626; font-weight:700; }
+    .success, .error { display:none; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-black text-white py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <a href="index.html" class="logo-container mb-4 md:mb-0 text-center">
+        <div>
+          <div class="logo-text text-3xl">LUX</div>
+          <div class="text-xs tracking-[0.2em] text-gray-400">LUXURY CARTS</div>
+        </div>
+      </a>
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html#about" class="nav-link text-white hover:text-red-500 font-medium">ABOUT US</a>
+        <a href="index.html#products" class="nav-link text-white hover:text-red-500 font-medium">OUR CARS</a>
+        <a href="index.html#contact" class="nav-link text-white hover:text-red-500 font-medium">CONTACT</a>
+        <a href="dealer.html" class="nav-link text-white hover:text-red-500 font-medium">BECOME A DEALER NOW</a>
+      </nav>
+      <div class="md:hidden">
+        <a href="dealer.html" class="px-4 py-2 rounded-md bg-red-600 text-white font-semibold">Dealer</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Intro -->
+  <section class="relative py-16 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl">
+        <h1 class="font-serif text-4xl md:text-5xl font-bold">Become a Dealer</h1>
+        <div class="w-24 h-1 bg-red-600 my-6"></div>
+        <p class="text-gray-300 leading-relaxed">
+          At LUX, we seek partnerships with distributors committed to excellence. Please complete the form below and a Dealer Support Specialist will be in contact with you within 48 hours.
+          All fields marked with <span class="text-red-500">*</span> are required.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario -->
+  <main class="py-12 bg-gray-50 flex-1">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 md:p-10">
+
+        <!-- estados de envío -->
+        <div id="form-success" class="success mb-6 rounded-lg border border-green-200 bg-green-50 text-green-800 p-4">
+          Thank you! We have received your application and will be in touch shortly.
+        </div>
+        <div id="form-error" class="error mb-6 rounded-lg border border-red-200 bg-red-50 text-red-800 p-4">
+          There was a problem submitting your request. Please try again or contact us. <a href="mailto:sales@luxury-carts.com" class="underline">sales@luxury-carts.com</a>.
+        </div>
+
+        <form id="dealer-form" class="grid grid-cols-1 md:grid-cols-2 gap-6" novalidate>
+          <!-- Meta -->
+          <input type="text" name="_honey" id="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <!-- Company info -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold req" for="company_name">Company name</label>
+            <input id="company_name" type="text" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Your company LLC / Corp"/>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold req" for="street_address">Street address</label>
+            <input id="street_address" type="text" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="123 Main St, Suite 100"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="city">City</label>
+            <input id="city" type="text" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="state">State</label>
+            <input id="state" type="text" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="FL"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="zip">Zip code</label>
+            <input id="zip" type="text" required pattern="\\d{5}(-\\d{4})?" class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="33131"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="phone">Phone</label>
+            <input id="phone" type="tel" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="+1 (786) 555-1234"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="email">Email</label>
+            <input id="email" type="email" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="you@company.com"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="website">Website address</label>
+            <input id="website" type="url" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="https://yourcompany.com"/>
+          </div>
+
+          <!-- Contact person -->
+          <div>
+            <label class="block text-sm font-semibold req" for="first_name">Contact person — First name</label>
+            <input id="first_name" type="text" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="last_name">Contact person — Last name</label>
+            <input id="last_name" type="text" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"/>
+          </div>
+
+          <!-- Numbers -->
+          <div>
+            <label class="block text-sm font-semibold req" for="num_employees">Number of employees</label>
+            <input id="num_employees" type="number" min="0" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="e.g. 12"/>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold req" for="carts_sold_12m">Golf carts sold in last 12 months</label>
+            <input id="carts_sold_12m" type="number" min="0" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="e.g. 35"/>
+          </div>
+
+          <!-- Principal business -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold req" for="business_type">Principal type of business</label>
+            <select id="business_type" required class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-600">
+              <option value="" selected disabled>Select one...</option>
+              <option>Retail storefront</option>
+              <option>Online retailer</option>
+              <option>Rental fleet</option>
+              <option>Golf course / Club</option>
+              <option>Distributor</option>
+              <option>Auto dealer</option>
+              <option>Service & Repairs</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div id="business_type_other_wrap" class="md:col-span-2 hidden">
+            <label class="block text-sm font-semibold req" for="business_type_other">Please specify</label>
+            <input id="business_type_other" type="text" class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600"/>
+          </div>
+
+          <!-- Extra / mensaje -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold" for="notes">Additional details (optional)</label>
+            <textarea id="notes" rows="5" class="mt-2 w-full rounded-md border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Tell us about your market, coverage, current brands, etc."></textarea>
+          </div>
+
+          <!-- Consent -->
+          <div class="md:col-span-2 flex items-start gap-3">
+            <input id="consent" type="checkbox" required class="mt-1 w-5 h-5 border-gray-300">
+            <label for="consent" class="text-sm text-gray-700 req">I agree to be contacted by LUX and confirm that the information provided is true.</label>
+          </div>
+
+          <!-- Submit -->
+          <div class="md:col-span-2">
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-md transition">
+              APPLY NOW
+            </button>
+            <p class="text-xs text-gray-500 mt-3">
+              By submitting, you agree to our <a href="#" class="underline">Terms</a> and <a href="#" class="underline">Privacy Policy</a>.
+            </p>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer mínimo -->
+  <footer class="bg-black text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center text-sm text-gray-400">
+      © 2024 Luxury Carts. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // ====== Mostrar campo "Other" si corresponde ======
+    const bt = document.getElementById('business_type');
+    const otherWrap = document.getElementById('business_type_other_wrap');
+    const otherInput = document.getElementById('business_type_other');
+    bt.addEventListener('change', () => {
+      if (bt.value === 'Other') {
+        otherWrap.classList.remove('hidden');
+        otherInput.setAttribute('required', 'required');
+      } else {
+        otherWrap.classList.add('hidden');
+        otherInput.removeAttribute('required');
+        otherInput.value = '';
+      }
+    });
+
+    // ====== Supabase: Config ======
+    const SUPABASE_URL = 'https://tdrloqxdfqsuvoxofqcy.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkcmxvcXhkZnFzdXZveG9mcWN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMzAyMzIsImV4cCI6MjA3MTgwNjIzMn0.SbBnTBCbiexLr1LtooStQsL8UUU8j2Pp2eYwOJuabPM';
+    const TABLE = 'lux_carts_miami'; // usamos la tabla limpia sin espacios
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // UI helpers
+    const form = document.getElementById('dealer-form');
+    const okBox = document.getElementById('form-success');
+    const errBox = document.getElementById('form-error');
+
+    function showOk(msg='Thank you! We have received your application and will be in touch shortly.') {
+      okBox.textContent = msg;
+      okBox.style.display = 'block';
+      errBox.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function showErr(msg='There was a problem submitting your request. Please try again.') {
+      errBox.innerHTML = `${msg} If it persists, contact us at <a href="mailto:sales@luxury-carts.com" class="underline">sales@luxury-carts.com</a>.`;
+      errBox.style.display = 'block';
+      okBox.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ====== Envío a Supabase ======
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot
+      if (document.getElementById('_honey').value) return;
+
+      // Validación mínima requerida
+      const requiredIds = [
+        'company_name','street_address','city','state','zip',
+        'phone','email','website','first_name','last_name',
+        'num_employees','carts_sold_12m','business_type','consent'
+      ];
+      for (const id of requiredIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.type === 'checkbox') {
+          if (!el.checked) { el.focus(); showErr('Please accept the consent.'); return; }
+        } else if (!el.value) {
+          el.focus(); showErr('Please complete the required fields (*).'); return;
+        }
+      }
+      if (bt.value === 'Other' && !otherInput.value) {
+        otherInput.focus(); showErr('Please specify your business type.'); return;
+      }
+
+      // Preparar payload -> mapeo 1:1 a columnas de la tabla
+      const employeesVal = parseInt(document.getElementById('num_employees').value, 10);
+      const salesVal = parseInt(document.getElementById('carts_sold_12m').value, 10);
+      let detailsText = (document.getElementById('notes').value || '').trim();
+      if (bt.value === 'Other' && otherInput.value) {
+        detailsText = (detailsText ? detailsText + ' ' : '') + `[Other business type: ${otherInput.value.trim()}]`;
+      }
+
+      const payload = [{
+        company_name: document.getElementById('company_name').value.trim(),
+        street_address: document.getElementById('street_address').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        state: document.getElementById('state').value.trim(),
+        zip_code: document.getElementById('zip').value.trim(), // <- mapea a zip_code en DB
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        website: document.getElementById('website').value.trim(),
+        contact_first_name: document.getElementById('first_name').value.trim(),
+        contact_last_name: document.getElementById('last_name').value.trim(),
+        employees: Number.isFinite(employeesVal) ? employeesVal : null,
+        sales_12m: Number.isFinite(salesVal) ? salesVal : null,
+        business_type: document.getElementById('business_type').value,
+        details: detailsText || null,
+        consent: true
+      }];
+
+      // Deshabilitar botón
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true; btn.textContent = 'Sending...';
+
+      try {
+        const { error } = await sb.from(TABLE).insert(payload);
+        if (error) throw error;
+        form.reset();
+        otherWrap.classList.add('hidden');
+        showOk();
+      } catch (err) {
+        console.error(err);
+        showErr('We could not register your request at this time.');
+      } finally {
+        btn.disabled = false; btn.textContent = 'APPLY NOW';
+      }
+    });
+  </script>
+</body>
+</html>
